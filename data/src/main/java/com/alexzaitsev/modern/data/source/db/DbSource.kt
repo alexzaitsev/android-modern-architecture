@@ -5,7 +5,9 @@ import com.alexzaitsev.modern.data.source.db.dao.Dao2
 import com.alexzaitsev.modern.data.source.db.model.DbTestModel
 import com.github.kittinunf.result.Result
 import kotlinx.coroutines.delay
+import org.koin.core.annotation.Single
 
+@Single
 internal class DbSource(
     private val dao1: Dao1,
     private val dao2: Dao2

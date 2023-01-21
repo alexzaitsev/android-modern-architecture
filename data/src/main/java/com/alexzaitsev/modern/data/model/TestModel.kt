@@ -7,10 +7,10 @@ data class TestModel(
     val testData: String
 )
 
-fun ApiTestModel.toEntity() = TestModel(
+internal fun ApiTestModel.toEntity() = TestModel(
     testData = testData
 )
 
-fun DbTestModel.toEntity() = TestModel(
+internal fun DbTestModel.toEntity() = TestModel(
     testData = testData
 )

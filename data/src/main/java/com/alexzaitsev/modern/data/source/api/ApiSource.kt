@@ -5,7 +5,9 @@ import com.alexzaitsev.modern.data.source.api.api.ApiV2
 import com.alexzaitsev.modern.data.source.api.model.ApiTestModel
 import com.github.kittinunf.result.Result
 import kotlinx.coroutines.delay
+import org.koin.core.annotation.Single
 
+@Single
 internal class ApiSource(
     private val apiV1: ApiV1,
     private val apiV2: ApiV2

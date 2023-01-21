@@ -8,7 +8,9 @@ import com.alexzaitsev.modern.data.source.db.DbSource
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.flatMap
 import com.github.kittinunf.result.map
+import org.koin.core.annotation.Single
 
+@Single
 class ModernRepository internal constructor(
     private val apiSource: ApiSource,
     private val dbSource: DbSource,
