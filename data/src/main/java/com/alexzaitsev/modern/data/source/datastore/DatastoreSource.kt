@@ -1,6 +1,6 @@
 package com.alexzaitsev.modern.data.source.datastore
 
-class DatastoreSource {
+internal class DatastoreSource {
 
     fun getLastValue() : String = "datastore1"
 }

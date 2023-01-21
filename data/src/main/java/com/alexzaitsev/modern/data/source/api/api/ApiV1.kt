@@ -5,7 +5,7 @@ import com.alexzaitsev.modern.data.source.api.model.ApiTestModel
 /**
  * This should be extended to Retrofit interface
  */
-interface ApiV1 {
+internal interface ApiV1 {
 
     fun getData(): List<ApiTestModel>
 }
