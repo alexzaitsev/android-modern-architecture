@@ -2,6 +2,7 @@ package com.alexzaitsev.modern
 
 import android.app.Application
 import com.alexzaitsev.modern.data.DataModule
+import com.alexzaitsev.modern.view.ViewModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,7 +16,7 @@ class App: Application() {
         startKoin{
             androidLogger()
             androidContext(this@App)
-            modules(DataModule().module)
+            modules(DataModule().module + ViewModule().module)
         }
     }
 }
