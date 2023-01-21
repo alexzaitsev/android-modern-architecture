@@ -8,11 +8,10 @@ import com.alexzaitsev.modern.data.source.db.DbSource
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.flatMap
 import com.github.kittinunf.result.map
-import kotlinx.coroutines.delay
 import org.koin.core.annotation.Single
 
 @Single
-class ModernRepository internal constructor(
+internal class ModernRepository internal constructor(
     private val apiSource: ApiSource,
     private val dbSource: DbSource,
     private val datastoreSource: DatastoreSource
@@ -37,12 +36,5 @@ class ModernRepository internal constructor(
                     .map { fromDb -> fromApi + fromDb }
             }.map { fromApiAndDb ->
                 fromApiAndDb + TestModel(testData = datastoreSource.getLastValue())
-            }.map { list ->
-                applyComplexLogic(list)
             }
-
-    private suspend fun applyComplexLogic(data: List<TestModel>): List<TestModel> {
-        delay(100L) // imagine here we have some complex logic and many lines of code
-        return data
-    }
 }
