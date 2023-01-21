@@ -4,6 +4,7 @@ import com.alexzaitsev.modern.data.source.db.dao.Dao1
 import com.alexzaitsev.modern.data.source.db.dao.Dao2
 import com.alexzaitsev.modern.data.source.db.model.DbTestModel
 import com.github.kittinunf.result.Result
+import kotlinx.coroutines.delay
 
 internal class DbSource(
     private val dao1: Dao1,
@@ -16,9 +17,13 @@ internal class DbSource(
      * `Result.failure` if something went wrong (like server returned HTTP error code or
      * there was a data parsing issue).
      */
-    fun getData(): Result<List<DbTestModel>, Exception> = Result.success(
-        dao1.getData() +
-                dao2.getData() +
-                DbTestModel(testData = "db5")
-    )
+    suspend fun getData(): Result<List<DbTestModel>, Exception> {
+        delay(100L) // simulate DB request
+
+        return Result.success(
+            dao1.getData() +
+                    dao2.getData() +
+                    DbTestModel(testData = "db5")
+        )
+    }
 }

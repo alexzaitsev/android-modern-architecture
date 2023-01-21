@@ -4,6 +4,7 @@ import com.alexzaitsev.modern.data.source.api.api.ApiV1
 import com.alexzaitsev.modern.data.source.api.api.ApiV2
 import com.alexzaitsev.modern.data.source.api.model.ApiTestModel
 import com.github.kittinunf.result.Result
+import kotlinx.coroutines.delay
 
 internal class ApiSource(
     private val apiV1: ApiV1,
@@ -15,9 +16,13 @@ internal class ApiSource(
      * `Result.failure` if something went wrong (like server returned HTTP error code or
      * there was a data parsing issue).
      */
-    fun getData(): Result<List<ApiTestModel>, Exception> = Result.success(
-        apiV1.getData() +
-                apiV2.getData() +
-                ApiTestModel(testData = "api5")
-    )
+    suspend fun getData(): Result<List<ApiTestModel>, Exception> {
+        delay(1000L) // simulate network request
+
+        return Result.success(
+            apiV1.getData() +
+                    apiV2.getData() +
+                    ApiTestModel(testData = "api5")
+        )
+    }
 }

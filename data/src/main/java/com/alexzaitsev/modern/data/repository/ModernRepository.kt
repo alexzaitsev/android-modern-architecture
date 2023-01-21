@@ -27,7 +27,7 @@ class ModernRepository internal constructor(
      * In this case, if any of these operations fails, the whole operation fail.
      * You may use `mapError` or `flatMapError` operators to bypass this behavior.
      */
-    fun getData(): Result<List<TestModel>, Exception> =
+    suspend fun getData(): Result<List<TestModel>, Exception> =
         apiSource.getData().map { list -> list.map { it.toEntity() } }
             .flatMap { fromApi ->
                 dbSource.getData().map { list -> list.map { it.toEntity() } }
