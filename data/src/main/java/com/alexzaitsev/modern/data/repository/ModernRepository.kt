@@ -1,7 +1,7 @@
 package com.alexzaitsev.modern.data.repository
 
-import com.alexzaitsev.modern.data.model.TestModel
-import com.alexzaitsev.modern.data.model.toEntity
+import com.alexzaitsev.modern.data.model.DataTestModel
+import com.alexzaitsev.modern.data.model.toData
 import com.alexzaitsev.modern.data.source.api.ApiSource
 import com.alexzaitsev.modern.data.source.datastore.DatastoreSource
 import com.alexzaitsev.modern.data.source.db.DbSource
@@ -11,7 +11,7 @@ import com.github.kittinunf.result.map
 import org.koin.core.annotation.Single
 
 @Single
-internal class ModernRepository internal constructor(
+class ModernRepository internal constructor(
     private val apiSource: ApiSource,
     private val dbSource: DbSource,
     private val datastoreSource: DatastoreSource
@@ -29,12 +29,12 @@ internal class ModernRepository internal constructor(
      * In this case, if any of these operations fails, the whole operation fail.
      * You may use `mapError` or `flatMapError` operators to bypass this behavior.
      */
-    suspend fun getData(): Result<List<TestModel>, Exception> =
-        apiSource.getData().map { list -> list.map { it.toEntity() } }
+    suspend fun getData(): Result<List<DataTestModel>, Exception> =
+        apiSource.getData().map { list -> list.map { it.toData() } }
             .flatMap { fromApi ->
-                dbSource.getData().map { list -> list.map { it.toEntity() } }
+                dbSource.getData().map { list -> list.map { it.toData() } }
                     .map { fromDb -> fromApi + fromDb }
             }.map { fromApiAndDb ->
-                fromApiAndDb + TestModel(testData = datastoreSource.getLastValue())
+                fromApiAndDb + DataTestModel(testData = datastoreSource.getLastValue())
             }
 }
