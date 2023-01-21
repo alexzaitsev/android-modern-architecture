@@ -1,7 +1,6 @@
 package com.alexzaitsev.modern
 
 import android.app.Application
-import com.alexzaitsev.modern.data.DataManualModule
 import com.alexzaitsev.modern.data.DataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,7 +15,7 @@ class App: Application() {
         startKoin{
             androidLogger()
             androidContext(this@App)
-            modules(DataModule().module + DataManualModule)
+            modules(DataModule().module)
         }
     }
 }
