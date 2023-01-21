@@ -1,4 +1,4 @@
-package com.alexzaitsev.modern.view.home
+package com.alexzaitsev.modern.view
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
-class HomeViewModel(
+class MainViewModel(
     private val repository: ModernRepository
 ) : ViewModel() {
 
