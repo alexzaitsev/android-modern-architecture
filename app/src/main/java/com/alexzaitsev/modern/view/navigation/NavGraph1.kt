@@ -11,8 +11,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun Name1Screen(navigator: DestinationsNavigator) = Name1Screen(
     onBackClicked = {},
-    onSideEffect1 = {  /* navigator.navigateTo(HomeScreenDestination(), popCurrent = true) */ },
-    onSideEffect2 = { // You can show alert here etc.
+    goNext = {  /* navigator.navigateTo(HomeScreenDestination(), popCurrent = true) */ },
+    showError = { // You can show alert here etc.
         // Compose Destinations have special destinations for that:
         // @Destination(style = DestinationStyle.BottomSheet::class) or
         // @Destination(style = DestinationStyle.Dialog::class)

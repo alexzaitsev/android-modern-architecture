@@ -15,15 +15,15 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 @Composable
 fun Name1Screen(
     onBackClicked: () -> Unit,
-    onSideEffect1: () -> Unit,
-    onSideEffect2: () -> Unit
+    goNext: () -> Unit,
+    showError: () -> Unit
 ) {
     val viewModel = get<Name1ViewModel>()
 
     SideEffect(
         viewModel = viewModel,
-        onSideEffect1 = onSideEffect1,
-        onSideEffect2 = onSideEffect2
+        goNext = goNext,
+        showError = showError
     )
     ViewState(
         viewModel = viewModel,
@@ -34,12 +34,12 @@ fun Name1Screen(
 @Composable
 private fun SideEffect(
     viewModel: Name1ViewModel,
-    onSideEffect1: () -> Unit,
-    onSideEffect2: () -> Unit
+    goNext: () -> Unit,
+    showError: () -> Unit
 ) = viewModel.collectSideEffect { effect ->
     return@collectSideEffect when (effect) {
-        Name1SideEffect.SideEffect1 -> onSideEffect1()
-        Name1SideEffect.SideEffect2 -> onSideEffect2()
+        Name1SideEffect.GoNext -> goNext()
+        Name1SideEffect.ShowError -> showError()
     }
 }
 
@@ -50,7 +50,7 @@ private fun ViewState(
 ) = Name1ViewState(
     state = viewModel.collectAsState().value,
     onBackClicked = onBackClicked,
-    onAction1Clicked = { viewModel.sendAction(Name1UserAction.Action1) },
+    onLoadDataClicked = { viewModel.sendAction(Name1UserAction.LoadData) },
     onAction2Clicked = { viewModel.sendAction(Name1UserAction.Action2) },
     onAction3Clicked = { viewModel.sendAction(Name1UserAction.Action3) },
     onAction4Clicked = { viewModel.sendAction(Name1UserAction.Action4) }
@@ -60,7 +60,7 @@ private fun ViewState(
 private fun Name1ViewState(
     state: Name1ViewState,
     onBackClicked: () -> Unit,
-    onAction1Clicked: () -> Unit,
+    onLoadDataClicked: () -> Unit,
     onAction2Clicked: () -> Unit,
     onAction3Clicked: () -> Unit,
     onAction4Clicked: () -> Unit
@@ -69,7 +69,7 @@ private fun Name1ViewState(
     if (state.loading) {
         CircularProgressIndicator()
     } else {
-        Button(onClick = onAction1Clicked) { Text(text = "Action1") }
+        Button(onClick = onLoadDataClicked) { Text(text = "Load data") }
     }
     Button(onClick = onAction2Clicked) { Text(text = "Action2") }
     Button(onClick = onAction3Clicked) { Text(text = "Action3") }

@@ -14,13 +14,13 @@ class Name1ViewModel(
 ) {
 
     override fun processUserAction(action: Name1UserAction) = when (action) {
-        Name1UserAction.Action1 -> action1()
+        Name1UserAction.LoadData -> loadData()
         Name1UserAction.Action2 -> action2()
         Name1UserAction.Action3 -> action3()
         Name1UserAction.Action4 -> action4()
     }
 
-    private fun action1() = intent {
+    private fun loadData() = intent {
         // read more about intent{} here https://orbit-mvi.org/Core/overview/#core-operators
 
         // To update state use either updateState or reduceState (the last one allows to access current state)
@@ -43,12 +43,12 @@ class Name1ViewModel(
 
             // With this mechanism you can navigate further, show alerts, snackbar, etc.
             // To pass any information just convert SideEffect1 to data class.
-            sendEffect(Name1SideEffect.SideEffect1)
+            sendEffect(Name1SideEffect.GoNext)
         }, { ex ->
             Log.e("Name1VM", ex.message, ex)
             // With this mechanism you can navigate further, show alerts, snackbar, etc.
             // To pass any information just convert SideEffect2 to data class.
-            sendEffect(Name1SideEffect.SideEffect2)
+            sendEffect(Name1SideEffect.ShowError)
         })
     }
 

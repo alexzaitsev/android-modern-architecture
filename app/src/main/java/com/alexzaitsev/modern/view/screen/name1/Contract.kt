@@ -6,12 +6,12 @@ data class Name1ViewState(
 )
 
 sealed class Name1SideEffect {
-    object SideEffect1 : Name1SideEffect()
-    object SideEffect2 : Name1SideEffect()
+    object GoNext : Name1SideEffect()
+    object ShowError : Name1SideEffect()
 }
 
 sealed class Name1UserAction {
-    object Action1 : Name1UserAction()
+    object LoadData : Name1UserAction()
     object Action2 : Name1UserAction()
     object Action3 : Name1UserAction()
     object Action4 : Name1UserAction()
