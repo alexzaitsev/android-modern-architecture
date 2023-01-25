@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.alexzaitsev.modern.view.compose.theme.MyTheme
+import com.alexzaitsev.modern.view.navigation.NavGraphs
+import com.ramcosta.composedestinations.DestinationsNavHost
 
 @Composable
 fun MainScreen() = MyTheme {
@@ -33,5 +34,8 @@ private fun ScaffoldBody(
         .fillMaxSize()
         .padding(innerPadding)
 ) {
-    Text("Main screen content")
+    DestinationsNavHost(
+        modifier = Modifier.fillMaxSize(),
+        navGraph = NavGraphs.root // if this import is not found run ./gradlew kspDebugKotlin
+    )
 }
