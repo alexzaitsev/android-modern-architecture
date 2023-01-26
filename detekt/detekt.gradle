@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.22.0"
+    }
+}
+
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
+import io.gitlab.arturbosch.detekt.DetektPlugin
+import io.gitlab.arturbosch.detekt.Detekt
+
+detekt {
+    parallel = true
+    buildUponDefaultConfig = true
+    ignoreFailures = false
+    config = files("$rootDir/detekt/config.yml")
+    autoCorrect = true
+    reports.xml.required.set(true)
+}
+
+tasks.register("reportMerge", ReportMergeTask) {
+    output = project.layout.buildDirectory.file("$rootDir/detekt/report/report.xml")
+}
+
+plugins.withType(DetektPlugin) {
+    tasks.withType(Detekt) { detektTask ->
+        finalizedBy(reportMerge)
+        reportMerge.configure { mergeTask ->
+            mergeTask.input.from(detektTask.xmlReportFile)
+        }
+    }
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0"
+}
