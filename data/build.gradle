@@ -33,6 +33,7 @@ android {
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.12.7'
 
     // Result
     implementation "com.github.kittinunf.result:result-jvm:5.3.0"
