@@ -14,12 +14,16 @@ import org.koin.core.annotation.Factory
 @Factory
 class GetDataWithLogicAppliedUseCase internal constructor(
     private val repository: ModernRepository
-): UseCaseNoInput<Result<List<TestModel>, Exception>> {
+) : UseCaseNoInput<Result<List<TestModel>, Exception>> {
 
     override suspend operator fun invoke(): Result<List<TestModel>, Exception> {
         val data = repository.getData().map { data -> data.map { it.toEntity() } }
-        delay(100L) // imagine here we have some complex logic and many lines of code
+        delay(DELAY) // imagine here we have some complex logic and many lines of code
         // For example here we can join the data from different repositories.
         return data
+    }
+
+    companion object {
+        const val DELAY = 100L
     }
 }

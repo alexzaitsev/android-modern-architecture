@@ -5,5 +5,6 @@ import org.koin.core.annotation.Single
 @Single
 internal class DatastoreSource {
 
-    fun getLastValue() : String = "datastore1"
+    @Suppress("FunctionOnlyReturningConstant")
+    fun getLastValue(): String = "datastore1"
 }

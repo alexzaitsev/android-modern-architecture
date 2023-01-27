@@ -13,19 +13,22 @@ internal class DbSource(
     private val dao2: Dao2
 ) {
 
-
     /**
      * @return Result. In our sample it's always `success` but in real life you should return
      * `Result.failure` if something went wrong (like server returned HTTP error code or
      * there was a data parsing issue).
      */
     suspend fun getData(): Result<List<DbTestModel>, Exception> {
-        delay(100L) // simulate DB request
+        delay(DELAY) // simulate DB request
 
         return Result.success(
             dao1.getData() +
-                    dao2.getData() +
-                    DbTestModel(testData = "db0")
+                dao2.getData() +
+                DbTestModel(testData = "db0")
         )
+    }
+
+    companion object {
+        const val DELAY = 100L
     }
 }

@@ -12,6 +12,7 @@ fun BaseViewModel<*, *, *>.log(elementName: String, mviElement: Any) {
     )
 }
 
+@Suppress("SwallowedException")
 val Any.shortClassName: String
     get() = try {
         val fullName = this::class.java.name ?: ""
@@ -24,6 +25,7 @@ val Any.shortClassName: String
         ""
     }
 
+@Suppress("SwallowedException")
 val Any.shortSubclassName: String
     get() = try {
         val fullName = this::class.java.name ?: ""

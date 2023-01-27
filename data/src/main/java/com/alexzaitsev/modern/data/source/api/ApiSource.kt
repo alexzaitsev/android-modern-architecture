@@ -19,12 +19,16 @@ internal class ApiSource(
      * there was a data parsing issue).
      */
     suspend fun getData(): Result<List<ApiTestModel>, Exception> {
-        delay(1000L) // simulate network request
+        delay(DELAY) // simulate network request
 
         return Result.success(
             apiV1.getData() +
-                    apiV2.getData() +
-                    ApiTestModel(testData = "api0")
+                apiV2.getData() +
+                ApiTestModel(testData = "api0")
         )
+    }
+
+    companion object {
+        const val DELAY = 1000L
     }
 }

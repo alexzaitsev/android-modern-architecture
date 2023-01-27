@@ -6,14 +6,14 @@ import com.alexzaitsev.modern.view.ViewModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import org.koin.ksp.generated.*
+import org.koin.ksp.generated.module
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        startKoin{
+        startKoin {
             androidLogger()
             androidContext(this@App)
             modules(domainModules + ViewModule().module)
