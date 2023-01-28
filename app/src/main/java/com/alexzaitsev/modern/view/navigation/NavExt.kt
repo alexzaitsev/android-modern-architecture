@@ -1,5 +1,7 @@
 package com.alexzaitsev.modern.view.navigation
 
+import com.alexzaitsev.modern.util.log
+import com.alexzaitsev.modern.util.shortClassName
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.spec.Direction
 
@@ -15,6 +17,7 @@ fun DestinationsNavigator.navigateTo(
     cleanStack: Boolean = false,
     popCurrent: Boolean = false
 ) {
+    logNavigation("Open ${direction.shortNavClassName}; cleanStack=$cleanStack; popCurrent=$popCurrent")
     if (popCurrent) {
         popBackStack()
     }
@@ -27,3 +30,12 @@ fun DestinationsNavigator.navigateTo(
         }
     })
 }
+
+private fun logNavigation(message: String) = log("navigation", message)
+
+private val Any.shortNavClassName: String
+    get() = if (this is NavGraph) {
+        "NavGraph(route=$route, startRoute=${startRoute.shortClassName})"
+    } else {
+        shortClassName
+    }

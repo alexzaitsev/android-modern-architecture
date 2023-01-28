@@ -78,4 +78,6 @@ dependencies {
     implementation "org.orbit-mvi:orbit-core:$orbitVersion"
     implementation "org.orbit-mvi:orbit-viewmodel:$orbitVersion"
     implementation "org.orbit-mvi:orbit-compose:$orbitVersion"
+    // timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }

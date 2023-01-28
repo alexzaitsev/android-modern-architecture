@@ -1,10 +1,10 @@
 package com.alexzaitsev.modern.view.screen.name1
 
-import android.util.Log
 import com.alexzaitsev.modern.domain.usecase.GetDataWithLogicAppliedUseCase
 import com.alexzaitsev.modern.view.BaseViewModel
 import org.koin.android.annotation.KoinViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
+import timber.log.Timber
 
 @KoinViewModel
 class Name1ViewModel(
@@ -45,7 +45,7 @@ class Name1ViewModel(
             // To pass any information just convert SideEffect1 to data class.
             sendEffect(Name1SideEffect.GoNext)
         }, { ex ->
-            Log.e("Name1VM", ex.message, ex)
+            Timber.e(ex)
             // With this mechanism you can navigate further, show alerts, snackbar, etc.
             // To pass any information just convert SideEffect2 to data class.
             sendEffect(Name1SideEffect.ShowError)
