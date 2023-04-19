@@ -1,6 +1,6 @@
 # Modern Android Architecture
 
-![cover](https://user-images.githubusercontent.com/2372414/233195750-2a00152d-7a69-4ada-9dbc-646464f63a8b.png)
+[![cover](https://user-images.githubusercontent.com/2372414/233195750-2a00152d-7a69-4ada-9dbc-646464f63a8b.png)](https://www.udemy.com/course/modern-android-architecture/?referralCode=AA60BFC9B867AD172067)
 
 This course is designed for **all levels of Middle/Senior Android developers** who wish to advance their knowledge on how to create cutting-edge, scalable, and maintainable Android applications.
 
