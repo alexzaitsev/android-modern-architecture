@@ -1,4 +1,7 @@
 # Modern Android Architecture
+
+![cover](https://user-images.githubusercontent.com/2372414/233195750-2a00152d-7a69-4ada-9dbc-646464f63a8b.png)
+
 This course is designed for **all levels of Middle/Senior Android developers** who wish to advance their knowledge on how to create cutting-edge, scalable, and maintainable Android applications.
 
 Throughout the course, you will learn how to **apply the Clean Architecture** approach to your app development process, to create a codebase that is easy to understand, maintain, and extend. You will also learn how to **leverage the Android Compose** framework to **build user interfaces that are reactive, declarative, and easy to test.**
